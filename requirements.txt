@@ -38,6 +38,7 @@ ply @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/ply_16994739
 prompt-toolkit @ file:///C:/b/abs_68uwr58ed1/croot/prompt-toolkit_1704404394082/work
 psutil @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/psutil_1699482842340/work
 pure-eval @ file:///opt/conda/conda-bld/pure_eval_1646925070566/work
+pyarrow @ file:///C:/b/abs_cbc4sg_1e0/croot/pyarrow_1721664257308/work/python
 Pygments @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pygments_1699474141968/work
 pyparsing @ file:///C:/b/abs_520r19rysg/croot/pyparsing_1725041656021/work
 PyQt5==5.15.10

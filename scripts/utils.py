@@ -49,4 +49,4 @@ def split_taxi_data(clean_df: pd.DataFrame,
         Returns:
             A tuple (train data, test data) both in dataframe form   
     """
-    return train_test_split(clean_df[[x_column]], clean_df[[y_column]], train_size=train_size)
+    return train_test_split(clean_df[x_column], clean_df[[y_column]], train_size=train_size)
