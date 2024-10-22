@@ -8,7 +8,7 @@ import random
 import argparse
 import numpy as np
 
-def main(learning_rate, num_epochs):
+def main(learning_rate, num_epochs, batch_size):
     """
     Simple training loop:
     This code trains a neural network to predict the fare amount of taxi drives using the drop off and pick up locations.
@@ -40,7 +40,7 @@ def main(learning_rate, num_epochs):
 
     # Pytorch: Load the dataset for trainging
     dataset = NYCTaxiExampleDataset(X_train=X_train, y_train=y_train)
-    trainloader = torch.utils.data.DataLoader(dataset, batch_size=10, shuffle=True, num_workers=1)
+    trainloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=1)
   
     # Initialize the MLP
     mlp = MLP(encoded_shape=dataset.X_enc_shape)
@@ -84,7 +84,7 @@ def main(learning_rate, num_epochs):
     # Process is complete.
     print('Training process has finished.')
     # Save model
-    torch.save(mlp.state_dict(), f'models/trained_model_lr_{learning_rate}_epochs_{num_epochs}.pth')
+    torch.save(mlp.state_dict(), f'models/trained_model_lr_{learning_rate}_epochs_{num_epochs}_batchsize_{batch_size}.pth')
     print('Model is saved in models folder.')
     
     return X_train, X_test, y_train, y_test, data, mlp
@@ -97,8 +97,9 @@ if __name__ == "__main__":
     # Add arguments for hyperparameters
     parser.add_argument('--learning_rate', type=float, default=1e-4, help='Learning rate for the optimizer')
     parser.add_argument('--num_epochs', type=int, default=5, help='Number of training epochs')
+    parser.add_argument('--batch_size', type=int, default=5, help='Number samples for training step')
 
     # Parse the command-line arguments
     
     args = parser.parse_args()
-    main(args.learning_rate, args.num_epochs)
+    main(args.learning_rate, args.num_epochs, args.batch_size)
