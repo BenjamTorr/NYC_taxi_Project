@@ -8,7 +8,7 @@ import random
 import argparse
 import numpy as np
 
-def main(learning_rate, num_epochs, batch_size):
+def main(learning_rate, num_epochs):
     """
     Simple training loop:
     This code trains a neural network to predict the fare amount of taxi drives using the drop off and pick up locations.
@@ -36,11 +36,11 @@ def main(learning_rate, num_epochs, batch_size):
     X_train, X_test, y_train, y_test = split_taxi_data(clean_df=clean_df, 
                                                    x_column=location_ids, 
                                                    y_column="fare_amount", 
-                                                   train_size=500000)
+                                                   train_size=5000)
 
     # Pytorch: Load the dataset for trainging
     dataset = NYCTaxiExampleDataset(X_train=X_train, y_train=y_train)
-    trainloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=1)
+    trainloader = torch.utils.data.DataLoader(dataset, batch_size=10, shuffle=True, num_workers=1)
   
     # Initialize the MLP
     mlp = MLP(encoded_shape=dataset.X_enc_shape)
@@ -80,8 +80,7 @@ def main(learning_rate, num_epochs, batch_size):
             current_loss += loss.item()
             if i % 10 == 0:
                 print('Loss after mini-batch %5d: %.3f' % (i + 1, current_loss / 500) + ' in epoch ' + str(epoch + 1))
-            current_loss = 0.0
-   
+            current_loss = 0.0 
     # Process is complete.
     print('Training process has finished.')
     # Save model
@@ -98,9 +97,8 @@ if __name__ == "__main__":
     # Add arguments for hyperparameters
     parser.add_argument('--learning_rate', type=float, default=1e-4, help='Learning rate for the optimizer')
     parser.add_argument('--num_epochs', type=int, default=5, help='Number of training epochs')
-    parser.add_argument('--batch_size', type=int, default=10, help='Number of samples for the optimization')
 
     # Parse the command-line arguments
     
     args = parser.parse_args()
-    main(args.learning_rate, args.num_epochs, args.batch_size)
+    main(args.learning_rate, args.num_epochs)
