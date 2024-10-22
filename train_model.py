@@ -1,6 +1,9 @@
 import torch
 from torch import nn
+import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
+from scripts.model_utils import *
+from scripts.utils import *
 
 def main():
     """Simple training loop"""
@@ -62,3 +65,6 @@ def main():
     # Process is complete.
     print('Training process has finished.')
     return X_train, X_test, y_train, y_test, data, mlp
+
+if __name__ == "__main__":
+    main()
