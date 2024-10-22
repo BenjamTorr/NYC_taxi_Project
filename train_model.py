@@ -11,11 +11,11 @@ def main():
     torch.manual_seed(42)
   
     # load data
-    raw_df = raw_taxi_df(filename="yellow_tripdata_2024-01.parquet")
+    raw_df = raw_taxi_df(filename="data\\yellow_tripdata_2024-01.parquet")
     clean_df = clean_taxi_df(raw_df=raw_df)
     location_ids = ['PULocationID', 'DOLocationID']
     X_train, X_test, y_train, y_test = split_taxi_data(clean_df=clean_df, 
-                                                   x_columns=location_ids, 
+                                                   x_column=location_ids, 
                                                    y_column="fare_amount", 
                                                    train_size=500000)
 

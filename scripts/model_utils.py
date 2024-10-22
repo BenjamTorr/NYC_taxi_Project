@@ -2,6 +2,7 @@ import torch
 from torch import nn
 from sklearn.preprocessing import OneHotEncoder
 from sklearn import neighbors
+import pandas as pd
 
 def train_knn_regressor(x_train: pd.Series, 
                         y_train: pd.Series, 

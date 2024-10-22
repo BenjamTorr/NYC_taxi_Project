@@ -1,5 +1,6 @@
 import pandas as pd
 from typing import Any
+from sklearn.model_selection import train_test_split
 
 def raw_taxi_df(filename: str) -> pd.DataFrame:
     """
